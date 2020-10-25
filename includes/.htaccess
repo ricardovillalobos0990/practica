@@ -1,0 +1,4 @@
+Options +FollowSymLinks
+RewriteEngine on
+
+RewriteRule ^([a-zA-Z0-9]*)$ peticiones.php?id=$1
