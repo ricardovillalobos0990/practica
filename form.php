@@ -1,3 +1,12 @@
+<?php
+//session_start() crea una sesión o reanuda la actual basada en un identificador de sesión pasado mediante una petición GET o POST, o pasado mediante una cookie.
+session_start();
+//SI EL LOGIN FUE CORRECTO LA SESSION CONTIENE DATOS DE LO CONTRARIO NO TIENE SESSION INICIADA Y SE REDIRCCIONA AL INICIO
+if (!isset($_SESSION["id"])) {
+  header("Location: index.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -5,7 +14,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous" />
-  <!-- <link rel="stylesheet" href="./css/index.css"> -->
+  <link rel="stylesheet" href="./css/index.css">
   <title>Practica Lexa</title>
 </head>
 
@@ -58,8 +67,8 @@
                 <!--DESCRIPCION-->
                 <div class="mt-3" id="respuesta">
                   <!-- <div class="alert alert-success" role="alert">
-                                     A simple success alert—check it out!
-                                    </div> -->
+                    A simple success alert—check it out!
+                  </div> -->
                 </div>
               </div>
               <div class="modal-footer">
@@ -82,6 +91,7 @@
           <th scope="col">NOMBRE</th>
           <th scope="col">PRECIO</th>
           <th scope="col">DESCRIPCION</th>
+          <th scope="col">IMAGEN</th>
           <th scope="col">EDITAR</th>
           <th scope="col">BORRAR</th>
         </tr>
@@ -103,6 +113,10 @@
             </div>
             <div class="modal-body">
               <!--NOMBRE-->
+              <!-- Se manda campo oculta ya que este contiene identicado unico id "eid editar id en HTML" -->
+              <div class="mb-3">
+                <input type="hidden" class="form-control" id="eid" name="eid" placeholder="Codigo" />
+              </div>
               <div class="mb-3">
                 <label for="enombre"><span class="badge badge-pill badge-dark">NOMBRE</span></label>
                 <input type="text" class="form-control" id="enombre" name="enombre" placeholder="Nombre" required="" />
@@ -122,20 +136,17 @@
               <!--PRECIO-->
               <!--DESCRIPCION-->
               <div class="mb-3">
-                <input type="hidden" class="form-control" id="edescripcion" name="edescripcion" placeholder="Descripcion" />
-              </div>
-              <div class="mb-3">
-                <label for="edescripcion"><span class="badge badge-pill badge-dark">Descripcion</span></label>
+                <label for="edescripcion"><span class="badge badge-pill badge-dark">DESCRIPCION</span></label>
                 <input type="text" class="form-control" id="edescripcion" name="edescripcion" placeholder="Descripcion" required="" />
                 <div class="invalid-feedback">
-                  Se requiere una descripcion Valida...
+                  Se requiere una Descricpion válido..
                 </div>
               </div>
               <!--DESCRIPCION-->
               <div class="mt-3" id="erespuesta">
                 <!-- <div class="alert alert-success" role="alert">
-                      A simple success alert—check it out!
-                    </div> -->
+                  A simple success alert—check it out!
+                </div> -->
               </div>
             </div>
             <div class="modal-footer">
@@ -144,6 +155,69 @@
               </button>
               <button id="editar" type="button" class="btn btn-success">
                 Guardar Edicción
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <!-- ELIMINAR -->
+    <form id="formulario-eliminar" action="" method="GET">
+      <div class="modal fade" id="eliminarModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content text-left">
+            <div class="modal-header">
+              <h5 class="modal-title" id="titleModal">
+                Eliminar Producto Seleccionado
+              </h5>
+              <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <!-- Se manda campo oculta ya que este contiene identicado unico id "did eliminar id en HTML" -->
+              <div class="mb-3">
+                <input type="hidden" class="form-control" id="did" name="did" placeholder="Codigo" />
+              </div>
+              <!-- NOMBRE -->
+              <div class="mb-3">
+                <label for="dnombre"><span class="badge badge-pill badge-dark">NOMBRE</span> </label>
+                <input type="text" class="form-control" id="dnombre" name="dnombre" placeholder="Nombre" required="" disabled />
+                <div class="invalid-feedback">
+                  Se requiere un nombre válido..
+                </div>
+              </div>
+              <!-- NOMBRE -->
+              <!-- PRECIO -->
+              <div>
+                <label for="dprecio"><span class="badge badge-pill badge-dark">PRECIO</span> </label>
+                <input type="number" class="form-control" id="dprecio" name="dprecio" placeholder="Precio" required="" disabled />
+                <div class="invalid-feedback">
+                  Se requiere un Precio
+                </div>
+              </div>
+              <!-- PRECIO -->
+              <!-- DESCRIPCION -->
+              <div class="mb-3">
+                <label for="ddescripcion"><span class="badge badge-pill badge-dark">DESCRIPCION</span> </label>
+                <input type="text" class="form-control" id="ddescripcion" name="ddescripcion" placeholder="DESCRIPCION" required="" disabled />
+                <div class="invalid-feedback">
+                  Se requiere una descripcion válida...
+                </div>
+              </div>
+              <!-- DESCRIPCION -->
+              <div class="mt-3" id="drespuesta">
+                <div class="alert alert-danger" role="alert">
+                  ¿Esta seguro que desea borrar el Producto?
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-info" data-dismiss="modal">
+                Cerrar
+              </button>
+              <button id="eliminar" type="button" class="btn btn-danger">
+                Eliminar
               </button>
             </div>
           </div>

@@ -7,8 +7,8 @@ CREAR.addEventListener("click", crearProducto);
 const EDITAR = document.getElementById("editar");
 EDITAR.addEventListener("click", editarProductos);
 
-// const ELIMINAR = document.getElementById("eliminar");
-// ELIMINAR.addEventListener("click", eliminarProductos);
+const ELIMINAR = document.getElementById("eliminar");
+ELIMINAR.addEventListener("click", eliminarProductos);
 
 //EJECUTA LISTAR PRODUCTOS AL CARGAR LA PAGINA
 window.addEventListener("load", (event) => {
@@ -34,6 +34,7 @@ function mostrarTablaProductos(datos) {
           <td>${valor.nombre}</td>
           <td>${valor.precio}</td>
           <td>${valor.descripcion}</td>
+          <td></td>
           <td>
             <button class="btn" id="editar-form" type="button" value='${valor.id}' data-toggle="modal" data-target="#editarModal">
               Editar
@@ -124,9 +125,7 @@ function mostrarProductos(datos) {
   const eprecio = document.getElementById("eprecio");
   const edescripcion = document.getElementById("edescripcion");
 
-
   for (let datosProduct of datos) {
-    console.log(datos)
     eid.value = datosProduct.id;
     enombre.value = datosProduct.nombre;
     eprecio.value = datosProduct.precio;
@@ -137,7 +136,6 @@ function mostrarProductos(datos) {
   const dnombre = document.getElementById("dnombre");
   const dprecio = document.getElementById("dprecio");
   const ddescripcion = document.getElementById("ddescripcion");
-
 
   for (let datosEliminar of datos) {
     did.value = datosEliminar.id;
@@ -154,10 +152,9 @@ function editarProductos() {
   eid = data.get("eid");
   enombre = data.get("enombre");
   eprecio = data.get("eprecio");
-  ecodigo = data.get("edescripcion");
+  edescripcion = data.get("edescripcion");
 
-
-  fetch(`http://localhost/php/drogueria/api/peticiones.php?eid=${eid}&enombre=${enombre}&eprecio=${eprecio}&edescripcion=${edescripcion}`, {
+  fetch(`http://localhost/practica/includes/peticiones.php?eid=${eid}&enombre=${enombre}&eprecio=${eprecio}&edescripcion=${edescripcion}`, {
     method: "PUT",
     headers: {
       "Content-type": "application/json",
@@ -206,7 +203,7 @@ function eliminarProductos() {
   const data = new FormData(formularioEliminar);
   did = data.get("did");
 
-  fetch(`http://localhost/php/drogueria/api/peticiones.php?did=${did}`, {
+  fetch(`http://localhost/practica/includes/peticiones.php?did=${did}`, {
     method: "DELETE",
     headers: {
       "Content-type": "application/json",
@@ -236,6 +233,5 @@ function eliminarProductos() {
         ${err};
       </div>
     `;
-      // console.log(err);
     });
 }

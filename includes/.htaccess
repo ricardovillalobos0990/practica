@@ -1,3 +1,5 @@
+#Re escritura de URL
+
 Options +FollowSymLinks
 RewriteEngine on
 

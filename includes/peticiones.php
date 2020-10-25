@@ -5,7 +5,6 @@ header('Content-type: application/json');
 
 $metodo = $_SERVER['REQUEST_METHOD'];
 
-
 $solicitud = ($_GET['id']);
 
 switch ($metodo) {
@@ -28,12 +27,12 @@ switch ($metodo) {
         break;
 
     case 'POST':
-        if (isset($_POST['ccodigo'])) {
-            $codigo = $_POST['ccodigo'];
+        if (isset($_POST['cnombre'])) {
             $nombre = $_POST['cnombre'];
             $precio = $_POST['cprecio'];
-            $insertProduct = $mysqli->prepare("INSERT INTO productos(codigo, nombre, precio) VALUES(?, ?, ?)");
-            $insertProduct->bind_param('isi', $codigo, $nombre, $precio);
+            $descripcion = $_POST['cdescripcion'];
+            $insertProduct = $mysqli->prepare("INSERT INTO productos(nombre, precio, descripcion) VALUES(?, ?, ?)");
+            $insertProduct->bind_param('sis', $nombre, $precio, $descripcion);
             $insertProduct->execute();
             exit(json_encode(array("status" => 'Insercion exitosa ')));
         } else {
@@ -43,13 +42,13 @@ switch ($metodo) {
         break;
 
     case 'PUT':
-        if (isset($_GET['ecodigo'])) {
+        if (isset($_GET['eid'])) {
             $eid = $_GET['eid'];
             $enombre = $_GET['enombre'];
             $eprecio = $_GET['eprecio'];
             $edescripcion = $_GET['edescripcion'];
 
-            $editarProduct  = $mysqli->prepare("UPDATE productos SET nombre='$enombre', precio=$eprecio, edescripcion=$edescripcion, WHERE id = ?");
+            $editarProduct  = $mysqli->prepare("UPDATE productos SET nombre='$enombre', precio=$eprecio, descripcion='$edescripcion' WHERE id = ?");
             $editarProduct->bind_param('i', $eid);
             $editarProduct->execute();
             exit(json_encode(array("status" => 'Actualizacion exitosa ')));
@@ -60,6 +59,7 @@ switch ($metodo) {
         break;
 
     case 'DELETE':
+
         if (isset($_GET['did'])) {
             $id = $_GET['did'];
             var_dump($id);
