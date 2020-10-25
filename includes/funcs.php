@@ -1,9 +1,10 @@
 <?php
-
+// COnexion a base de datos
 require "includes/conexion.php";
 
 global $mysqli;
 
+// FUncion para validar que los campos de Login no este vacios
 function isNullLogin($usuario, $password)
 {
     if (strlen(trim($usuario)) < 1 || strlen(trim($password)) < 1) {
@@ -13,6 +14,7 @@ function isNullLogin($usuario, $password)
     }
 }
 
+// Validar login de usuario sea con correo o id, se valida que el usuario este activo y se re dirige a pagina de productos
 function login($usuario, $password)
 {
     global $mysqli;
@@ -48,20 +50,19 @@ function login($usuario, $password)
     }
     return $errors;
 }
-
+//Funcion para validar que el usuario este activo
 function isActivo($usuario)
-{   
+{
     // El usuario siempre estara activo
     $activacion = 1;
-    
+
     if ($activacion == 1) {
         return true;
     } else {
         return false;
     }
 }
-
-
+//Funcion para registrat ultimo inicio de sesion en la palicacion
 function lastSession($id)
 {
     global $mysqli;
@@ -71,20 +72,19 @@ function lastSession($id)
     $stmt->execute();
     $stmt->close();
 }
-
-
+// Funcion para validar los errores presentandos durante el login
 function resultBlock($errors)
 {
-	if (count($errors) > 0) {
-		echo "<div id='error' class='alert alert-warning alert-dismissible fade show' role='alert'>
+    if (count($errors) > 0) {
+        echo "<div id='error' class='alert alert-warning alert-dismissible fade show' role='alert'>
 			<button type='button' class='close' data-dismiss='alert' aria-label='Close'>
 			<span aria-hidden='true'>&times;</span>
 			</button>
 			<ul>";
-		foreach ($errors as $error) {
-			echo "<li>" . $error . "</li>";
-		}
-		echo "</ul>";
-		echo "</div>";
-	}
+        foreach ($errors as $error) {
+            echo "<li>" . $error . "</li>";
+        }
+        echo "</ul>";
+        echo "</div>";
+    }
 }

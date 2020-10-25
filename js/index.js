@@ -83,7 +83,6 @@ function crearProducto() {
         Producto Agregado Correctamente
       </div>
       `;
-      // console.log(texto);
       //CERRAR LA ALERTA DEL FORMULARIO CREAR A LOS 5 SEGUNDOS
       window.setTimeout(function () {
         $(".alert").remove();
@@ -95,7 +94,6 @@ function crearProducto() {
         ${err};
       </div>
       `;
-      // console.log(err);
     });
 }
 
@@ -103,9 +101,7 @@ function crearProducto() {
 document.querySelector("table").addEventListener("click", (e) => {
   e.preventDefault();
   if (e.target.nodeName == "BUTTON") {
-    // console.log(e.target.nodeName);
     valor = e.target.value;
-    // console.log(valor);
     traerProductos(valor);
   }
 });
@@ -180,7 +176,6 @@ function editarProductos() {
         Producto Editado Correctamente
       </div>
     `;
-      // console.log(texto);
       //CERRAR LA ALERTA DEL FORMULARIO CREAR A LOS 5 SEGUNDOS
       window.setTimeout(function () {
         $("#editarModal").modal("hide");
@@ -193,7 +188,6 @@ function editarProductos() {
         ${err};
       </div>
     `;
-      // console.log(err);
     });
 }
 
@@ -221,7 +215,6 @@ function eliminarProductos() {
     .then(function (texto) {
       listarProductos();
       formularioEliminar.reset();
-      // console.log(texto);
       //CERRAR LA ALERTA DEL FORMULARIO CREAR A LOS 5 SEGUNDOS
       window.setTimeout(function () {
         $("#eliminarModal").modal("hide");

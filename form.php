@@ -19,6 +19,18 @@ if (!isset($_SESSION["id"])) {
 </head>
 
 <body>
+  <!-- NAVEGACION -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Practica Lexa</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav ml-auto">
+                <a class="nav-item nav-link ml-auto" href="logout.php">Cerrar session </a>
+            </div>
+        </div>
+    </nav>
   <div class="container my-3 bg-light">
     <div class="row justify-content-center text-center">
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#crearModal">

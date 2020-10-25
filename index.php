@@ -16,10 +16,9 @@ if (!empty($_POST)) {
     }
 
     if (count($errors) == 0) {
-         $errors[] = login($id, $password);
+        $errors[] = login($id, $password);
     }
 }
-
 ?>
 
 <!doctype html>
