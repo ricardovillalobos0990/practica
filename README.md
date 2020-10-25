@@ -1,3 +1,5 @@
+El proyecto se encuentra en la Rama Master XD
+
 Se adjunta la base de datos practica sql
 
 Solo existe un usuario el cual su usuario es: 1 y la contraseña es: *Adatahd710*
