@@ -2,7 +2,7 @@ El proyecto se encuentra en la Rama Master XD
 
 Se adjunta la base de datos practica sql
 
-Solo existe un usuario el cual su usuario es: 1 y la contraseña es: *Adatahd710*
+Solo existe un usuario el cual su usuario es: 1 y la contraseña es: *Adatahd710* --> asteriscos al principio y al final
 
 Si se cambia la contraseña esta debe ser encriptada desde la base de datos directamente
 Para ello utilice este servicio https://phppasswordhash.com/
